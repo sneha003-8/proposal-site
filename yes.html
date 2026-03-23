@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>You Said YES 💜</title>
+
+<style>
+
+body{
+margin:0;
+background:black;
+color:white;
+text-align:center;
+font-family:'Segoe UI', sans-serif;
+padding:30px;
+overflow:hidden;
+}
+
+/* video */
+
+video{
+width:90%;
+max-width:500px;
+border-radius:20px;
+box-shadow:0 0 30px purple;
+margin-top:20px;
+}
+
+/* message section */
+
+#message{
+display:none;
+margin-top:50px;
+animation:fadeIn 2s;
+}
+
+/* heading gradient */
+
+.finalText{
+font-size:34px;
+background: linear-gradient(45deg,#ff00c8,#a100ff,#00eaff);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+animation: glow 2s infinite alternate;
+}
+
+/* paragraph */
+
+.finalPara{
+font-size:20px;
+line-height:1.8;
+margin-top:20px;
+color:white;
+text-shadow:0 0 10px purple;
+}
+
+/* glow animation */
+
+@keyframes glow{
+from{ text-shadow:0 0 10px purple }
+to{ text-shadow:0 0 35px pink }
+}
+
+/* fade */
+
+@keyframes fadeIn{
+from{opacity:0; transform:translateY(20px);}
+to{opacity:1;}
+}
+
+/* floating emoji */
+
+@keyframes floatUp{
+0%{transform:translateY(0);}
+100%{transform:translateY(-100vh);}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>You Said YES 💜</h1>
+
+<!-- background music -->
+<audio autoplay loop>
+<source src="melody.mp3">
+</audio>
+
+<!-- video player -->
+<video id="player" autoplay controls>
+<source src="video1.mp4">
+</video>
+
+<!-- final message -->
+<div id="message">
+
+<h1 class="finalText">
+💜 Thank You for Choosing Me 💜
+</h1>
+
+<p class="finalPara">
+
+Thank You for Choosing Me among all the others girls...<br><br>
+
+Thank You For Holding My Hand...<br><br>
+
+Thank You for Not Giving Up On Me...<br><br>
+
+Thank You For Everything...<br><br>
+
+💖 Happy Birthday Hubby...!!! 💖<br><br>
+
+🎉 Many Many Happy Returns of the Day...!!! 🎉
+
+</p>
+
+</div>
+
+<script>
+
+/* video sequence */
+
+let videos = ["video1.mp4","video2.mp4","video3.mp4"];
+let index = 0;
+let player = document.getElementById("player");
+
+player.onended = function(){
+
+index++;
+
+if(index < videos.length){
+player.src = videos[index];
+player.play();
+}
+else{
+
+/* hide video */
+player.style.display="none";
+
+/* show message */
+document.getElementById("message").style.display="block";
+
+}
+
+};
+
+/* floating emojis */
+
+setInterval(()=>{
+
+let e=document.createElement("div");
+
+let emojis=["💜","❤️","🖤","💞","❤️‍🔥"];
+
+e.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+
+e.style.position="fixed";
+e.style.left=Math.random()*100+"vw";
+e.style.bottom="-20px";
+e.style.fontSize="25px";
+
+e.style.animation="floatUp 5s linear";
+
+document.body.appendChild(e);
+
+setTimeout(()=>e.remove(),5000);
+
+},400);
+
+</script>
+
+</body>
+</html>

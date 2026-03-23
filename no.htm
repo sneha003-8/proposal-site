@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+
+body{
+background:black;
+overflow:hidden;
+}
+
+.cry{
+position:absolute;
+font-size:40px;
+animation:fall 5s linear infinite;
+}
+
+@keyframes fall{
+0%{transform:translateY(-100px)}
+100%{transform:translateY(100vh)}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<script>
+
+for(let i=0;i<120;i++){
+
+let e=document.createElement("div");
+e.className="cry";
+e.innerHTML="😭";
+
+e.style.left=Math.random()*100+"vw";
+e.style.animationDuration=(Math.random()*3+2)+"s";
+
+document.body.appendChild(e);
+
+}
+
+</script>
+
+</body>
+</html>

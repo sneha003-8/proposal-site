@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You 💜</title>
+
+<style>
+
+body{
+margin:0;
+font-family: 'Segoe UI', sans-serif;
+background: linear-gradient(135deg,#000,#2b004d,#000);
+color:white;
+text-align:center;
+overflow-x:hidden;
+}
+
+/* background glow */
+
+body::before{
+content:"";
+position:fixed;
+width:200%;
+height:200%;
+background: radial-gradient(circle, rgba(138,0,255,0.2), transparent 40%);
+animation: moveBg 12s infinite alternate;
+z-index:-1;
+}
+
+@keyframes moveBg{
+0%{transform:translate(-20%,-20%)}
+100%{transform:translate(20%,20%)}
+}
+
+/* card */
+
+.card{
+background: rgba(255,255,255,0.08);
+backdrop-filter: blur(10px);
+padding:20px;
+margin:20px;
+border-radius:20px;
+box-shadow:0 0 25px purple;
+}
+
+/* typing */
+
+#typing{
+font-size:20px;
+line-height:1.8;
+margin-bottom:20px;
+}
+
+/* slider */
+
+.slider img{
+width:90%;
+max-width:420px;
+border-radius:20px;
+box-shadow:0 0 25px purple;
+transition:0.6s;
+}
+
+/* audio */
+
+audio{
+margin-top:20px;
+}
+
+/* question */
+
+.question{
+font-size:30px;
+margin-top:30px;
+text-shadow:0 0 20px purple;
+}
+
+/* buttons */
+
+button{
+padding:15px 25px;
+font-size:18px;
+margin:15px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
+
+#yes{
+background:linear-gradient(45deg,#a100ff,#ff00c8);
+color:white;
+}
+
+#no{
+background:black;
+color:white;
+border:2px solid purple;
+position:absolute;
+}
+
+/* hearts */
+
+.heart{
+position:fixed;
+bottom:-10px;
+font-size:20px;
+animation:float 6s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0)}
+100%{transform:translateY(-100vh)}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<!-- typing message -->
+<p id="typing"></p>
+
+<!-- slider -->
+<div class="slider">
+<img id="slide" src="photo1.jpg">
+</div>
+
+<!-- voice + question -->
+<div id="voiceSection" style="display:none;">
+
+<h3>Listen to My Message 💜</h3>
+
+<audio id="voice" controls>
+<source src="voice.m4a">
+</audio>
+
+<h1 class="question">
+Will You Be My Forever and Ever? 💜
+</h1>
+
+<button id="yes" onclick="location.href='yes.html'">YES 💜</button>
+<button id="no">NO</button>
+
+</div>
+
+</div>
+
+<script>
+
+/* typing text */
+
+let text = `Mujhe Pata hai Hum logo mai Thora Ann Bann chal raha hai...
+Par Mai Aapka sath kabhi nahi chorungi... Wada karti hoon...
+Hum Dono Sath milke issko par karenge...
+I Love You... I Love You a Lot...
+Happy Birthday Jaan...
+Many Many Happy Returns of The Day...`;
+
+let i=0;
+
+function type(){
+if(i < text.length){
+document.getElementById("typing").innerHTML += text.charAt(i);
+i++;
+setTimeout(type,35);
+}
+}
+
+type();
+
+/* slider logic */
+
+let images = [
+"photo1.jpg",
+"photo2.jpg",
+"photo3.jpg",
+"photo4.jpg",
+"photo5.jpg",
+"photo6.jpg",
+"photo7.jpg",
+"photo8.jpg"
+];
+
+let index = 0;
+let slide = document.getElementById("slide");
+
+function startSlider(){
+
+let interval = setInterval(()=>{
+
+index++;
+
+if(index < images.length){
+slide.src = images[index];
+}
+else{
+
+clearInterval(interval);
+
+/* hide slider */
+document.querySelector(".slider").style.display = "none";
+
+/* show voice section */
+document.getElementById("voiceSection").style.display = "block";
+
+/* autoplay voice */
+document.getElementById("voice").play();
+
+}
+
+},1500); // 1.5 sec
+
+}
+
+startSlider();
+
+/* NO button escape */
+
+let noBtn=document.getElementById("no");
+
+document.addEventListener("mousemove",function(e){
+
+let rect=noBtn.getBoundingClientRect();
+
+if(Math.abs(e.clientX-rect.left)<100){
+noBtn.style.left=Math.random()*window.innerWidth+"px";
+noBtn.style.top=Math.random()*window.innerHeight+"px";
+}
+
+});
+
+/* floating hearts */
+
+setInterval(()=>{
+
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="💜";
+
+heart.style.left=Math.random()*100+"vw";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),6000);
+
+},500);
+
+</script>
+
+</body>
+</html>

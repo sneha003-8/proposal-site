@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Before You Continue 💜</title>
+
+<style>
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+background:linear-gradient(135deg,#000,#2b004d,#000);
+color:white;
+font-family:Arial;
+text-align:center;
+}
+
+button{
+padding:15px 40px;
+font-size:20px;
+background:#8a00ff;
+border:none;
+border-radius:12px;
+color:white;
+cursor:pointer;
+box-shadow:0 0 20px purple;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>Before You Continue...</h1>
+<p>There is something special I made for you 💜</p>
+
+<button onclick="startSite()">Start 💜</button>
+
+<audio id="music" loop>
+<source src="melody.mp3">
+</audio>
+
+<script>
+function startSite(){
+document.getElementById("music").play();
+window.location.href="index.html";
+}
+</script>
+
+</body>
+</html>
