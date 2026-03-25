@@ -1,24 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>You Said YES 💜</title>
 
 <style>
-
 body{
 margin:0;
 background:black;
 color:white;
 text-align:center;
-font-family:'Segoe UI', sans-serif;
+font-family:'Segoe UI';
 padding:30px;
-overflow:hidden;
 }
-
-/* video */
 
 video{
 width:90%;
@@ -28,165 +22,62 @@ box-shadow:0 0 30px purple;
 margin-top:20px;
 }
 
-/* message */
-
 #message{
 display:none;
-margin-top:50px;
-animation:fadeIn 2s;
+margin-top:40px;
 }
-
-/* colorful heading */
-
-.finalText{
-font-size:34px;
-background: linear-gradient(45deg,#ff00c8,#a100ff,#00eaff);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-animation: glow 2s infinite alternate;
-}
-
-/* paragraph */
-
-.finalPara{
-font-size:20px;
-line-height:1.8;
-margin-top:20px;
-text-shadow:0 0 10px purple;
-}
-
-/* glow */
-
-@keyframes glow{
-from{ text-shadow:0 0 10px purple }
-to{ text-shadow:0 0 35px pink }
-}
-
-/* fade */
-
-@keyframes fadeIn{
-from{opacity:0; transform:translateY(20px);}
-to{opacity:1;}
-}
-
-/* floating emoji */
-
-@keyframes floatUp{
-0%{transform:translateY(0);}
-100%{transform:translateY(-100vh);}
-}
-
 </style>
-
 </head>
 
 <body>
 
 <h1>You Said YES 💜</h1>
 
-<!-- background music -->
-<audio id="bgMusic" autoplay loop>
+<!-- MUSIC -->
+<audio id="bgMusic" loop>
 <source src="melody.mp3">
 </audio>
 
-<!-- video -->
 <video id="player" autoplay controls>
 <source src="video1.mp4">
 </video>
 
-<!-- final message -->
 <div id="message">
-
-<h1 class="finalText">
-💜 Thank You for Choosing Me 💜
-</h1>
-
-<p class="finalPara">
-
-Thank You for Choosing Me among all the others girls...<br><br>
-
-Thank You For Holding My Hand...<br><br>
-
-Thank You for Not Giving Up On Me...<br><br>
-
-Thank You For Everything...<br><br>
-
-💖 Happy Birthday Hubby...!!! 💖<br><br>
-
-🎉 Many Many Happy Returns of the Day...!!! 🎉
-
-</p>
-
+<h2>💜 Thank You 💜</h2>
+<p>Happy Birthday ❤️</p>
 </div>
 
 <script>
 
-/* video + music control */
+let music=document.getElementById("bgMusic");
+let player=document.getElementById("player");
 
-let videos = ["video1.mp4","video2.mp4","video3.mp4"];
-let index = 0;
+let videos=["video1.mp4","video2.mp4","video3.mp4"];
+let index=0;
 
-let player = document.getElementById("player");
-let music = document.getElementById("bgMusic");
+/* START MUSIC AFTER CLICK */
+document.body.addEventListener("click",()=>{
+music.play();
+},{once:true});
 
-/* stop music when video plays */
-player.onplay = function(){
+/* STOP MUSIC WHEN VIDEO PLAYS */
+player.onplay=()=>{
 music.pause();
 };
 
-/* play next video or show message */
-player.onended = function(){
-
+/* PLAY NEXT VIDEO */
+player.onended=()=>{
 index++;
 
-if(index < videos.length){
-
-player.src = videos[index];
+if(index<videos.length){
+player.src=videos[index];
 player.play();
-
-}
-else{
-
-/* hide video */
+}else{
 player.style.display="none";
-
-/* show final message */
 document.getElementById("message").style.display="block";
-
-/* resume music */
 music.play();
-
 }
-
 };
-
-/* allow music on tap (mobile fix) */
-document.body.addEventListener("click", ()=>{
-music.play();
-});
-
-/* floating emojis */
-
-setInterval(()=>{
-
-let e=document.createElement("div");
-
-let emojis=["💜","💖","🎉","✨","😍"];
-
-e.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
-
-e.style.position="fixed";
-e.style.left=Math.random()*100+"vw";
-e.style.bottom="-20px";
-e.style.fontSize="25px";
-
-e.style.animation="floatUp 5s linear";
-
-document.body.appendChild(e);
-
-setTimeout(()=>e.remove(),5000);
-
-},400);
 
 </script>
 
