@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You Said YES 💜</title>
+
+<style>
+body{
+margin:0;
+background:black;
+color:white;
+text-align:center;
+padding:30px;
+}
+
+video{
+width:90%;
+max-width:500px;
+border-radius:20px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>You Said YES 💜</h1>
+
+<audio id="bgMusic" loop>
+<source src="melody.mp3">
+</audio>
+
+<video id="player" autoplay controls>
+<source src="video1.mp4">
+</video>
+
+<div id="message" style="display:none;">
+<h2>💜 Thank You 💜</h2>
+</div>
+
+<script>
+
+let music=document.getElementById("bgMusic");
+let player=document.getElementById("player");
+
+let videos=["video1.mp4","video2.mp4","video3.mp4"];
+let index=0;
+
+/* unlock music */
+document.body.addEventListener("click",()=>{
+music.play();
+},{once:true});
+
+/* pause music when video plays */
+player.addEventListener("play", ()=> music.pause());
+
+/* next video logic */
+player.onended=()=>{
+index++;
+
+if(index<videos.length){
+player.src=videos[index];
+player.play();
+}else{
+player.style.display="none";
+document.getElementById("message").style.display="block";
+
+/* resume music */
+music.play();
+}
+};
+
+</script>
+
+</body>
+</html>

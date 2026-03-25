@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You 💜</title>
+
+<style>
+body{
+margin:0;
+font-family:'Segoe UI';
+background:linear-gradient(135deg,#000,#2b004d,#000);
+color:white;
+text-align:center;
+overflow-x:hidden;
+}
+
+/* tap overlay */
+#tapToStart{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
+font-size:22px;
+}
+
+/* card */
+.card{
+background:rgba(255,255,255,0.08);
+padding:20px;
+margin:20px;
+border-radius:20px;
+box-shadow:0 0 25px purple;
+}
+
+/* slider */
+.slider img{
+width:90%;
+max-width:420px;
+border-radius:20px;
+}
+
+button{
+padding:15px 25px;
+margin:10px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
+
+#yes{background:purple;color:white;}
+
+#no{
+position:absolute;
+background:black;
+color:white;
+border:2px solid purple;
+}
+</style>
+</head>
+
+<body>
+
+<div id="tapToStart">Tap Anywhere 💜</div>
+
+<audio id="bgMusic" loop>
+<source src="melody.mp3">
+</audio>
+
+<div class="card">
+
+<p id="typing"></p>
+
+<div class="slider">
+<img id="slide" src="photo1.jpg">
+</div>
+
+<div id="voiceSection" style="display:none;">
+
+<audio id="voice" controls>
+<source src="voice.m4a">
+</audio>
+
+<h2>Will You Be Mine Forever? 💜</h2>
+
+<button id="yes" onclick="location.href='yes.html'">YES 💜</button>
+<button id="no">NO</button>
+
+</div>
+
+</div>
+
+<script>
+
+/* MUSIC UNLOCK */
+let music = document.getElementById("bgMusic");
+
+document.getElementById("tapToStart").addEventListener("click", () => {
+music.play();
+document.getElementById("tapToStart").style.display="none";
+});
+
+/* typing */
+let text="I love you ❤️ Happy Birthday";
+let i=0;
+
+function type(){
+if(i<text.length){
+document.getElementById("typing").innerHTML+=text.charAt(i);
+i++;
+setTimeout(type,40);
+}
+}
+type();
+
+/* slider */
+let images=["photo1.jpg","photo2.jpg","photo3.jpg","photo4.jpg"];
+let index=0;
+let slide=document.getElementById("slide");
+
+let interval=setInterval(()=>{
+index++;
+if(index<images.length){
+slide.src=images[index];
+}else{
+clearInterval(interval);
+document.querySelector(".slider").style.display="none";
+document.getElementById("voiceSection").style.display="block";
+}
+},1500);
+
+/* NO escape */
+let noBtn=document.getElementById("no");
+
+document.addEventListener("mousemove",(e)=>{
+let rect=noBtn.getBoundingClientRect();
+if(Math.abs(e.clientX-rect.left)<100){
+noBtn.style.left=Math.random()*window.innerWidth+"px";
+noBtn.style.top=Math.random()*window.innerHeight+"px";
+}
+});
+
+/* VOICE + MUSIC CONTROL */
+let voice = document.getElementById("voice");
+
+voice.addEventListener("play", ()=> music.pause());
+voice.addEventListener("pause", ()=> music.play());
+voice.addEventListener("ended", ()=> music.play());
+
+</script>
+
+</body>
+</html>
