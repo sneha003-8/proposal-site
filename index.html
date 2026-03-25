@@ -14,7 +14,6 @@ text-align:center;
 overflow-x:hidden;
 }
 
-/* tap overlay */
 #tapToStart{
 position:fixed;
 top:0;
@@ -29,7 +28,6 @@ z-index:9999;
 font-size:22px;
 }
 
-/* card */
 .card{
 background:rgba(255,255,255,0.08);
 padding:20px;
@@ -38,7 +36,6 @@ border-radius:20px;
 box-shadow:0 0 25px purple;
 }
 
-/* slider */
 .slider img{
 width:90%;
 max-width:420px;
@@ -97,11 +94,16 @@ border:2px solid purple;
 
 <script>
 
-/* MUSIC */
 let music = document.getElementById("bgMusic");
 
-/* TYPING TEXT */
-let text="I love you ❤️ Happy Birthday";
+/* 🔥 ONLY MESSAGE CHANGED HERE */
+let text = `Mujhe Pata hai Hum logo mai Thora Ann Bann chal raha hai...
+Par Mai Aapka sath kabhi nahi chorungi... Wada karti hoon...
+Hum Dono Sath milke issko par karenge...
+I Love You... I Love You a Lot...
+Happy Birthday Jaan...
+Many Many Happy Returns of The Day...`;
+
 let i=0;
 
 function type(){
@@ -112,7 +114,7 @@ setTimeout(type,40);
 }
 }
 
-/* SLIDER */
+/* slider */
 let images=["photo1.jpg","photo2.jpg","photo3.jpg","photo4.jpg"];
 let index=0;
 let slide=document.getElementById("slide");
@@ -130,14 +132,11 @@ document.getElementById("voiceSection").style.display="block";
 },1500);
 }
 
-/* TAP TO START (MAIN FIX HERE) */
 document.getElementById("tapToStart").addEventListener("click", () => {
-    music.play();
-    document.getElementById("tapToStart").style.display="none";
-
-    // 🔥 EVERYTHING STARTS AFTER TAP
-    startSlider();
-    type();
+music.play();
+document.getElementById("tapToStart").style.display="none";
+startSlider();
+type();
 });
 
 /* NO escape */
@@ -151,7 +150,7 @@ noBtn.style.top=Math.random()*window.innerHeight+"px";
 }
 });
 
-/* VOICE + MUSIC CONTROL */
+/* voice control */
 let voice = document.getElementById("voice");
 
 voice.addEventListener("play", ()=> music.pause());
