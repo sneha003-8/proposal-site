@@ -97,15 +97,10 @@ border:2px solid purple;
 
 <script>
 
-/* MUSIC UNLOCK */
+/* MUSIC */
 let music = document.getElementById("bgMusic");
 
-document.getElementById("tapToStart").addEventListener("click", () => {
-music.play();
-document.getElementById("tapToStart").style.display="none";
-});
-
-/* typing */
+/* TYPING TEXT */
 let text="I love you ❤️ Happy Birthday";
 let i=0;
 
@@ -116,13 +111,13 @@ i++;
 setTimeout(type,40);
 }
 }
-type();
 
-/* slider */
+/* SLIDER */
 let images=["photo1.jpg","photo2.jpg","photo3.jpg","photo4.jpg"];
 let index=0;
 let slide=document.getElementById("slide");
 
+function startSlider(){
 let interval=setInterval(()=>{
 index++;
 if(index<images.length){
@@ -133,6 +128,17 @@ document.querySelector(".slider").style.display="none";
 document.getElementById("voiceSection").style.display="block";
 }
 },1500);
+}
+
+/* TAP TO START (MAIN FIX HERE) */
+document.getElementById("tapToStart").addEventListener("click", () => {
+    music.play();
+    document.getElementById("tapToStart").style.display="none";
+
+    // 🔥 EVERYTHING STARTS AFTER TAP
+    startSlider();
+    type();
+});
 
 /* NO escape */
 let noBtn=document.getElementById("no");
