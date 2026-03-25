@@ -33,8 +33,27 @@ border-radius:20px;
 <source src="video1.mp4">
 </video>
 
+<!-- 🔥 ONLY MESSAGE CHANGED HERE -->
 <div id="message" style="display:none;">
-<h2>💜 Thank You 💜</h2>
+
+<h1>💜 Thank You 💜</h1>
+
+<p style="font-size:20px; line-height:1.8; margin-top:20px;">
+
+Thank You for Choosing Me among all the others girls...<br><br>
+
+Thank You For Holding My Hand...<br><br>
+
+Thank You for Not Giving Up On Me...<br><br>
+
+Thank You For Everything...<br><br>
+
+💖 Happy Birthday Hubby...!!! 💖<br><br>
+
+🎉 Many Many Happy Returns of the Day...!!! 🎉
+
+</p>
+
 </div>
 
 <script>
@@ -45,15 +64,12 @@ let player=document.getElementById("player");
 let videos=["video1.mp4","video2.mp4","video3.mp4"];
 let index=0;
 
-/* unlock music */
 document.body.addEventListener("click",()=>{
 music.play();
 },{once:true});
 
-/* pause music when video plays */
 player.addEventListener("play", ()=> music.pause());
 
-/* next video logic */
 player.onended=()=>{
 index++;
 
@@ -63,8 +79,6 @@ player.play();
 }else{
 player.style.display="none";
 document.getElementById("message").style.display="block";
-
-/* resume music */
 music.play();
 }
 };
