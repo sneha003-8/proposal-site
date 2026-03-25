@@ -29,7 +29,6 @@ cursor:pointer;
 box-shadow:0 0 20px purple;
 }
 </style>
-
 </head>
 
 <body>
@@ -45,8 +44,12 @@ box-shadow:0 0 20px purple;
 
 <script>
 function startSite(){
-document.getElementById("music").play();
+let music = document.getElementById("music");
+music.play();
+
+setTimeout(()=>{
 window.location.href="index.html";
+},500);
 }
 </script>
 
